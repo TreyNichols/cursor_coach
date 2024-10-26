@@ -1,24 +1,23 @@
+# Imports
 import pygame
 import mouse
-from pygame.locals import (KEYDOWN)
-import time
 
 CURSOR_SIZE = 32
 
-sens = 0.5
-
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
-
-clock = pygame.time.Clock()
-
 class My_Cursor():
-    def __init__(self):
+    def __init__(self, sensitivity:float):
+        """Creates a custom cursor taking in s"""
         self.spr = pygame.transform.scale(pygame.image.load("assets/target.png"), (CURSOR_SIZE, CURSOR_SIZE))
         self.root = pygame.display.get_surface()
         self.x = SCREEN_WIDTH/2
         self.y = SCREEN_HEIGHT/2
         self.rect = pygame.rect.Rect(self.x, self.y, 32, 32)
+        self.sensitivity = sensitivity
+        
+        # Makes the hardware mouse invisible
+        pygame.mouse.set_visible(False)
+        pygame.mouse.set_pos((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+
 
     def draw(self):
         self.root.blit(self.spr, (self.x, self.y))
@@ -26,28 +25,28 @@ class My_Cursor():
         self.root.blit(s, (self.rect.x, self.rect.y))
         
     def update(self):
-        if (pygame.mouse.get_pos()[0] == 0 or pygame.mouse.get_pos()[0] >= SCREEN_WIDTH-1 or 
-                pygame.mouse.get_pos()[1] == 0 or pygame.mouse.get_pos()[1] >= SCREEN_HEIGHT-1):
-            mouse.move(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, absolute = True, duration = 0)    
-        #pygame.mouse.set_pos((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))        
+        delta_x = 0
+        delta_y = 0   
+             
         (delta_x, delta_y) = pygame.mouse.get_rel()
         self.x += (delta_x * sens)
         #self.x = (pygame.mouse.get_pos()[0] * sens) - (0.5 * CURSOR_SIZE)
         self.y += (delta_y * sens)
         #self.y = (pygame.mouse.get_pos()[1] * sens) - (0.5 * CURSOR_SIZE)
-        if self.x < 0:
-            self.x = 0
-        if self.x > SCREEN_WIDTH:
-            self.x = SCREEN_WIDTH
-        if self.y < 0:
-            self.y = 0
-        if self.y >= SCREEN_HEIGHT:
-            self.y = SCREEN_HEIGHT
+        #self.hit_edge = False
+        if self.x < 0 - (CURSOR_SIZE // 2):
+            self.x = 0 - (CURSOR_SIZE // 2)
+        if self.x > SCREEN_WIDTH - (CURSOR_SIZE // 2):
+            self.x = SCREEN_WIDTH - (CURSOR_SIZE // 2)
+        if self.y < 0 - (CURSOR_SIZE // 2):
+            self.y = 0 - (CURSOR_SIZE // 2)
+        if self.y >= SCREEN_HEIGHT - (CURSOR_SIZE // 2):
+            self.y = SCREEN_HEIGHT - (CURSOR_SIZE // 2)
         
+        if (pygame.mouse.get_pos()[0] == 0 or pygame.mouse.get_pos()[0] >= SCREEN_WIDTH-1 or 
+                pygame.mouse.get_pos()[1] == 0 or pygame.mouse.get_pos()[1] >= SCREEN_HEIGHT-1):
+            mouse.move(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, absolute = True, duration = 0)
         
-        #time.sleep(.01)    
-        pygame.event.clear()
-            #clock.tick(30)
             
         
         #pygame.mouse.set_pos((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
@@ -55,7 +54,7 @@ class My_Cursor():
         print(self.x, self.y, delta_x, delta_y, pygame.mouse.get_pos())
     
 pygame.init()
-#pygame.mouse.set_visible(False)
+pygame.mouse.set_visible(False)
 SCREEN = pygame.display.set_mode((1280, 720))
 
 # Set cursor invisible
@@ -63,6 +62,7 @@ SCREEN = pygame.display.set_mode((1280, 720))
 # Force the actual cursor to stay in the middle
 # Take amount moved each frame and translate it to the artificial cursor times sensitivity factor x
 
+# Testing
 pygame.event.set_grab(True)
 c = My_Cursor()
 run = True
