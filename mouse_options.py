@@ -3,6 +3,7 @@ from cursor import My_Cursor
 from constants import *
 from button import Button
 from main import get_font, main_menu
+from blit_text import *
 
 def mouse_options():
     """Displays Mouse Options Screen"""
@@ -13,7 +14,6 @@ def mouse_options():
     # Initializes cursor
     c = My_Cursor()
     my_surface = pygame.surface.Surface((SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2))
-    print(my_surface.get_size())
     
     # The buttons along the bottom. Size is 142 x 75
     BUT_SIZE_1 = (142, 75)
@@ -49,6 +49,8 @@ def mouse_options():
     num_disp = pygame.surface.Surface((BUT_SIZE_2, BUT_SIZE_2))
     DISP_LOC = (SURF_LOC[0] + BUT_SIZE_1[0] + (BUT_SIZE_2 // 2) - 3 , SCREEN_HEIGHT - (75 * 2))
     
+    
+    
     while True:
         SCREEN.fill("white")
         my_surface.fill("gray")
@@ -59,6 +61,13 @@ def mouse_options():
         
         text = get_font(25).render(str(value), True, "black")
         SCREEN.blit(text, (DISP_LOC[0] + 1, DISP_LOC[1] + (BUT_SIZE_2 // 3)))
+        
+        inst = "Please change your sensitivity until you are comfortable with the speed"
+        
+        title = get_font(30).render("MOUSE OPTIONS", True, "black")
+        
+        SCREEN.blit(title, (SURF_LOC[0] + 20, SURF_LOC[1] + 5))
+        blit_text(SCREEN, inst, (SURF_LOC[0] + 10, SURF_LOC[1] + 50), get_font(25))
         
         
         for button in [back_button, test_button, next_button, minus_button, plus_button]:
