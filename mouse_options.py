@@ -4,32 +4,33 @@ from constants import *
 from button import Button
 from main import get_font, main_menu
 from blit_text import *
+from aim_trainer_game import run as game
 
 def mouse_options():
     """Displays Mouse Options Screen"""
     sens = 1.0
     value = 1.0
-    SURF_LOC = (((SCREEN_WIDTH // 3) * 2 + 2, SCREEN_HEIGHT // 2))
-    SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    SURF_LOC = (((WIDTH // 3) * 2 + 2, HEIGHT // 2))
+    SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     # Initializes cursor
     c = My_Cursor()
-    my_surface = pygame.surface.Surface((SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2))
+    my_surface = pygame.surface.Surface((WIDTH // 3, HEIGHT // 2))
     
     # The buttons along the bottom. Size is 142 x 75
     BUT_SIZE_1 = (142, 75)
     
     back_button = Button(
-        image = pygame.image.load("assets/Back.png"), pos = (SURF_LOC[0] + (BUT_SIZE_1[0] // 2), SCREEN_HEIGHT - BUT_SIZE_1[1] + (BUT_SIZE_1[1] // 2)),
+        image = pygame.image.load("assets/Back.png"), pos = (SURF_LOC[0] + (BUT_SIZE_1[0] // 2), HEIGHT - BUT_SIZE_1[1] + (BUT_SIZE_1[1] // 2)),
         text_input = "BACK", font = get_font(30), base_color = "#d7fcd4", hovering_color = "White"
         )
     
     test_button = Button(
-        image = pygame.image.load("assets/Test.png"), pos = (SURF_LOC[0] + BUT_SIZE_1[0] + (BUT_SIZE_1[0] // 2), SCREEN_HEIGHT - BUT_SIZE_1[1] + (BUT_SIZE_1[1] // 2)),
+        image = pygame.image.load("assets/Test.png"), pos = (SURF_LOC[0] + BUT_SIZE_1[0] + (BUT_SIZE_1[0] // 2), HEIGHT - BUT_SIZE_1[1] + (BUT_SIZE_1[1] // 2)),
         text_input = "TEST", font = get_font(30), base_color = "#d7fcd4", hovering_color = "White"
         )
     
     next_button = Button(
-        image = pygame.image.load("assets/Next.png"), pos = (SURF_LOC[0] + (BUT_SIZE_1[0] * 2) + (BUT_SIZE_1[0] // 2), SCREEN_HEIGHT - BUT_SIZE_1[1] + (BUT_SIZE_1[1] // 2)),
+        image = pygame.image.load("assets/Next.png"), pos = (SURF_LOC[0] + (BUT_SIZE_1[0] * 2) + (BUT_SIZE_1[0] // 2), HEIGHT - BUT_SIZE_1[1] + (BUT_SIZE_1[1] // 2)),
         text_input = "NEXT", font = get_font(30), base_color = "#d7fcd4", hovering_color = "White"
         )
     
@@ -37,17 +38,17 @@ def mouse_options():
     BUT_SIZE_2 = 75
     
     plus_button = Button(
-        image = pygame.image.load("assets/plus_minus.png"), pos = (SURF_LOC[0] + BUT_SIZE_1[0] * 1.5 + (BUT_SIZE_2) , SCREEN_HEIGHT - (75 * 2) + (75 // 2)),
+        image = pygame.image.load("assets/plus_minus.png"), pos = (SURF_LOC[0] + BUT_SIZE_1[0] * 1.5 + (BUT_SIZE_2) , HEIGHT - (75 * 2) + (75 // 2)),
         text_input = "+", font = get_font(30), base_color = "#d7fcd4", hovering_color = "White"
         )
     
     minus_button = Button(
-        image = pygame.image.load("assets/plus_minus.png"), pos = (SURF_LOC[0] + BUT_SIZE_1[0] * 1.5 - (BUT_SIZE_2) , SCREEN_HEIGHT - (75 * 2) + (75 // 2)),
+        image = pygame.image.load("assets/plus_minus.png"), pos = (SURF_LOC[0] + BUT_SIZE_1[0] * 1.5 - (BUT_SIZE_2) , HEIGHT - (75 * 2) + (75 // 2)),
         text_input = "-", font = get_font(30), base_color = "#d7fcd4", hovering_color = "White"
         )
     
     num_disp = pygame.surface.Surface((BUT_SIZE_2, BUT_SIZE_2))
-    DISP_LOC = (SURF_LOC[0] + BUT_SIZE_1[0] + (BUT_SIZE_2 // 2) - 3 , SCREEN_HEIGHT - (75 * 2))
+    DISP_LOC = (SURF_LOC[0] + BUT_SIZE_1[0] + (BUT_SIZE_2 // 2) - 3 , HEIGHT - (75 * 2))
     
     
     
@@ -93,7 +94,7 @@ def mouse_options():
                     c.sensitivity = value
                 if next_button.checkForInput(cursor_pos):
                     # Put next thing here
-                    pass
+                    game()
         
         # Updates cursor and screen
         c.update()
