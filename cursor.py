@@ -16,6 +16,8 @@ class My_Cursor():
         # Makes the hardware mouse invisible
         pygame.mouse.set_visible(False)
         pygame.mouse.set_pos((WIDTH/2, HEIGHT/2))
+        pygame.event.set_grab(True)
+
 
 
     def draw(self):
