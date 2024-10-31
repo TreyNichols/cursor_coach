@@ -4,12 +4,13 @@ import math
 import random
 import time
 import constants
+from cursor import My_Cursor
 
-
-def run():
+def run(sens):
     run = True
     targets = []
     clock = pygame.time.Clock()
+    c = My_Cursor(sens)
 
     targets_pressed = 0
     clicks = 0
@@ -26,7 +27,7 @@ def run():
     while run:
         clock.tick(60)
         click = False
-        mouse_pos = pygame.mouse.get_pos()
+        mouse_pos = (c.rect.x, c.rect.y)
         elapsed_time = time.time() - start_time
                
 
@@ -74,6 +75,8 @@ def run():
 
         draw(constants.WIN, targets)
         draw_top_bar(constants.WIN, elapsed_time, targets_pressed, misses)
+        c.update()
+        c.draw()
         pygame.display.update()
 
     pygame.quit()
