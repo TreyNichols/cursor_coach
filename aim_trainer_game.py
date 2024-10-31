@@ -3,7 +3,6 @@ import pygame
 import math
 import random
 import time
-import sys
 import constants
 
 
@@ -18,13 +17,19 @@ def run():
     start_time = time.time()
     
     pygame.time.set_timer(constants.TARGET_EVENT, constants.TARGET_INCREMENT)
-
+    for x in range(2):
+                x = random.randint(constants.TARGET_PADDING, constants.WIDTH - constants.TARGET_PADDING)
+                y = random.randint(
+                constants.TARGET_PADDING + constants.TOP_BAR_HEIGHT, constants.HEIGHT - constants.TARGET_PADDING)
+                target = Target(x, y)
+                targets.append(target)
     while run:
         clock.tick(60)
         click = False
         mouse_pos = pygame.mouse.get_pos()
         elapsed_time = time.time() - start_time
                
+
         if elapsed_time >= 60.0:
                 end_screen(constants.WIN, elapsed_time, targets_pressed, clicks)
         for event in pygame.event.get():
@@ -57,6 +62,11 @@ def run():
             if click and target.collide(*mouse_pos):
                 targets.remove(target)
                 targets_pressed += 1
+                x = random.randint(constants.TARGET_PADDING, constants.WIDTH - constants.TARGET_PADDING)
+                y = random.randint(
+                constants.TARGET_PADDING + constants.TOP_BAR_HEIGHT, constants.HEIGHT - constants.TARGET_PADDING)
+                target = Target(x, y)
+                targets.append(target)
             
             if click and not(target.collide(*mouse_pos)):
                 misses += 1
@@ -70,14 +80,14 @@ def run():
 
 class Target:
     MAX_SIZE = 50
-    GROWTH_RATE = 0.2
+    GROWTH_RATE = 0
     COLOR = "red"
     SECOND_COLOR = "white"
 
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.size = 0
+        self.size = 49.9
         self.grow = True
 
     def update(self):
