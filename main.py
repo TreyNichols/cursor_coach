@@ -5,6 +5,7 @@ import time
 import random
 import constants
 import aim_trainer_game as aim
+import mouse_options as sens
 
 pygame.init()
 pygame.display.set_caption("Cursor Coach")
@@ -14,7 +15,7 @@ def get_font(size): # Returns Press-Start-2P in the desired size
 
 def play():
     while True:
-            aim.run()  
+            sens.mouse_options() 
     
 def options():
     while True:
