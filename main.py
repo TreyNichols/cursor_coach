@@ -1,8 +1,5 @@
 import pygame, sys
 from button import Button
-import math
-import time
-import random
 import constants
 import aim_trainer_game as aim
 from mouse_options import mouse_options
