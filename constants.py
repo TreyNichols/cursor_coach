@@ -2,8 +2,8 @@ import pygame
 pygame.init()
 
 CURSOR_SIZE = 32
-
 WIDTH, HEIGHT = 1280, 700
+PIC_MIDDLE = HEIGHT // 2
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 TARGET_INCREMENT = 99999999
 TARGET_EVENT = pygame.USEREVENT
