@@ -5,12 +5,19 @@ import random
 import time
 import constants
 from cursor import My_Cursor
+from calculations import calculations
 
 def run(sens):
+    clicked = []
+    functions = []
+    values = []
     run = True
     targets = []
     clock = pygame.time.Clock()
     c = My_Cursor(sens)
+    k = -1
+    l = 0
+    record_values = False
 
     targets_pressed = 0
     clicks = 0
@@ -18,7 +25,7 @@ def run(sens):
     start_time = time.time()
     
     pygame.time.set_timer(constants.TARGET_EVENT, constants.TARGET_INCREMENT)
-    for x in range(2):
+    for x in range(1):
                 x = random.randint(constants.TARGET_PADDING, constants.WIDTH - constants.TARGET_PADDING)
                 y = random.randint(
                 constants.TARGET_PADDING + constants.TOP_BAR_HEIGHT, constants.HEIGHT - constants.TARGET_PADDING)
@@ -31,8 +38,8 @@ def run(sens):
         elapsed_time = time.time() - start_time
                
 
-        if elapsed_time >= 60.0:
-                end_screen(constants.WIN, elapsed_time, targets_pressed, clicks)
+        if elapsed_time >= 5.0:
+                end_screen(constants.WIN, elapsed_time, targets_pressed, clicks, clicked, functions)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -62,6 +69,14 @@ def run(sens):
 
             if click and target.collide(*mouse_pos):
                 targets.remove(target)
+                
+                if record_values:
+                    functions.append(values)
+                    values = []
+                record_values = True
+                clicked.append((target.x, target.y))
+                k += 1
+                
                 targets_pressed += 1
                 x = random.randint(constants.TARGET_PADDING, constants.WIDTH - constants.TARGET_PADDING)
                 y = random.randint(
@@ -71,8 +86,12 @@ def run(sens):
             
             if click and not(target.collide(*mouse_pos)):
                 misses += 1
+        
+        if record_values:
+            values.append(mouse_pos)
+            l += 1
             
-
+            
         draw(constants.WIN, targets)
         draw_top_bar(constants.WIN, elapsed_time, targets_pressed, misses)
         c.update()
@@ -147,7 +166,7 @@ def draw_top_bar(win, elapsed_time, targets_pressed, misses):
     win.blit(score_label, (1050,5))
 
 
-def end_screen(win, elapsed_time, targets_pressed, clicks):
+def end_screen(win, elapsed_time, targets_pressed, clicks, clicked, functions):
     win.fill(constants.BG_COLOR)
     time_label = constants.LABEL_FONT.render(
         f"Time: {format_time(elapsed_time)}", 1, "white")
@@ -173,9 +192,16 @@ def end_screen(win, elapsed_time, targets_pressed, clicks):
     run = True
     while run:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 quit()
-
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                calculations(clicked, functions)
+    
 
 def get_middle(surface):
     return constants.WIDTH / 2 - surface.get_width()/2
+
+if __name__ == '__main__':
+    run(1)
+ 
