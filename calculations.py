@@ -39,7 +39,7 @@ def calculations(targets,data):
         avg_deviance.append(total_deviance / len(data[i]))
             
         
-    
+
     
     total = 0
     for i in range(len(avg_deviance)):

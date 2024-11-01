@@ -202,6 +202,7 @@ def end_screen(win, elapsed_time, targets_pressed, clicks, clicked, functions):
 def get_middle(surface):
     return constants.WIDTH / 2 - surface.get_width()/2
 
+
 if __name__ == '__main__':
     run(1)
  
