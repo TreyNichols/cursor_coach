@@ -18,7 +18,7 @@ def run(sens):
     start_time = time.time()
     
     pygame.time.set_timer(constants.TARGET_EVENT, constants.TARGET_INCREMENT)
-    for x in range(2):
+    for x in range(1):
                 x = random.randint(constants.TARGET_PADDING, constants.WIDTH - constants.TARGET_PADDING)
                 y = random.randint(
                 constants.TARGET_PADDING + constants.TOP_BAR_HEIGHT, constants.HEIGHT - constants.TARGET_PADDING)
