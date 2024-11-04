@@ -44,12 +44,19 @@ def calculations(targets,data):
     total = 0
     for i in range(len(avg_deviance)):
         total += avg_deviance[i]
-    total_deviance = total/len(avg_deviance)
+    try:
+        total_deviance = total/len(avg_deviance)
+    except:
+        total_deviance = 0
     
-    if total_deviance > 50:
-        print(f"You use too much wrist. avg deviance = {total_deviance}")
+    if total_deviance > 30:
+        return f"Too much wrist. avg deviance = {str(round(total_deviance,2))}"
+    elif total_deviance > 50:
+        return f"Oh no! Your avg deviance was {str(round(total_deviance,2))}!"
+    elif total_deviance > 100:
+        return f"Slow down! Your avg deviance was {str(round(total_deviance,2))}"
     else:
-        print(f"Your avg deviance was {total_deviance}")
+        return f"Nice! Your avg deviance was only {str(round(total_deviance,2))}!"
     
     
     

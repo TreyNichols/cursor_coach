@@ -5,8 +5,8 @@ from get_font import get_font
 from button import Button
 from constants import *
 from blit_text import blit_text
-def stretches_main():
-    c = My_Cursor()
+def stretches_main(sens):
+    c = My_Cursor(sens)
     
     palm_button = Button(
         image = pygame.transform.scale_by(pygame.image.load("assets/palm.png"), .12), pos = (150, PIC_MIDDLE), text_input = "Palm", font = get_font(30), base_color = "black", hovering_color = "green"
@@ -69,8 +69,8 @@ def stretches_main():
         pygame.display.update()
 
 
-def Wrist_Stretch():
-    c = My_Cursor()
+def Wrist_Stretch(sens):
+    c = My_Cursor(sens)
 
     back_button = Button(
         image = pygame.image.load("assets/Back.png"), pos = (142 // 2, HEIGHT - 75 + (75 // 2)),
@@ -112,8 +112,8 @@ def Wrist_Stretch():
         c.draw()
         pygame.display.update()
 
-def Thumb_Stretch():
-    c = My_Cursor()
+def Thumb_Stretch(sens):
+    c = My_Cursor(sens)
 
     back_button = Button(
         image = pygame.image.load("assets/Back.png"), pos = (142 // 2, HEIGHT - 75 + (75 // 2)),
@@ -149,8 +149,8 @@ def Thumb_Stretch():
         c.draw()
         pygame.display.update()
 
-def Palm_Stretch():
-    c = My_Cursor()
+def Palm_Stretch(sens):
+    c = My_Cursor(sens)
 
     back_button = Button(
         image = pygame.image.load("assets/Back.png"), pos = (142 // 2, HEIGHT - 75 + (75 // 2)),
@@ -218,8 +218,8 @@ def Palm_Stretch():
         c.draw()
         pygame.display.update()
 
-def Finger_Stretch():
-    c = My_Cursor()
+def Finger_Stretch(sens):
+    c = My_Cursor(sens)
 
     back_button = Button(
         image = pygame.image.load("assets/Back.png"), pos = (142 // 2, HEIGHT - 75 + (75 // 2)),
@@ -259,8 +259,8 @@ def Finger_Stretch():
         c.draw()
         pygame.display.update()
 
-def Forearm_Stretch():
-    c = My_Cursor()
+def Forearm_Stretch(sens):
+    c = My_Cursor(sens)
 
     back_button = Button(
         image = pygame.image.load("assets/Back.png"), pos = (142 // 2, HEIGHT - 75 + (75 // 2)),

@@ -92,6 +92,7 @@ def mouse_options():
                     value = round(value - 0.1, 1)    
                 if test_button.checkForInput(cursor_pos):
                     c.sensitivity = value
+                    sens = value
                 if next_button.checkForInput(cursor_pos):
                     # Put next thing here
                     game(sens)
@@ -100,6 +101,7 @@ def mouse_options():
         c.update()
         c.draw()            
         pygame.display.update()
+
 
 if __name__ == '__main__':        
     mouse_options()

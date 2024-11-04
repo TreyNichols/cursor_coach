@@ -14,7 +14,6 @@ TOP_BAR_HEIGHT = 50
 LABEL_FONT = pygame.font.Font("assets/font.ttf", 24)
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 BG = pygame.image.load("assets/Background.png")
-
 from pygame.locals import (
     QUIT, KEYDOWN, K_ESCAPE, MOUSEBUTTONDOWN
     )
