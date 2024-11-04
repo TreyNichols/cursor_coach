@@ -43,7 +43,7 @@ def run(sens):
         elapsed_time = time.time() - start_time
                
 
-        if elapsed_time >= 5.0:
+        if elapsed_time >= 60.0:
                 end_screen(constants.WIN, elapsed_time, targets_pressed, clicks, clicked, functions,sens,misses)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -68,9 +68,6 @@ def run(sens):
         for target in targets:
             target.update()
 
-            # if target.size <= 0:
-            #     targets.remove(target)
-            #     misses += 1
 
             if click and target.collide(*mouse_pos):
                 targets.remove(target)

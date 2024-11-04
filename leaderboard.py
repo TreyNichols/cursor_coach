@@ -3,12 +3,11 @@ import json
 import constants
 from button import Button
 from cursor import My_Cursor
-
+import get_font
 def get_middle(surface):
     return constants.WIDTH / 2 - surface.get_width() / 2
 
-def get_font(size):
-    return pygame.font.Font("assets/font.ttf", size)
+
 
 # Load and save functions for leaderboard
 def load_leaderboard(filename="assets/leaderboard.json"):
