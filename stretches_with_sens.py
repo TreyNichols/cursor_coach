@@ -51,15 +51,15 @@ def stretches_main(sens):
                 if back_button.checkForInput(cursor_pos):
                     return
                 if wrist_button.checkForInput(cursor_pos):
-                    Wrist_Stretch()
+                    Wrist_Stretch(sens)
                 if thumb_button.checkForInput(cursor_pos):
-                    Thumb_Stretch()
+                    Thumb_Stretch(sens)
                 if palm_button.checkForInput(cursor_pos):
-                    Palm_Stretch()
+                    Palm_Stretch(sens)
                 if finger_button.checkForInput(cursor_pos):
-                    Finger_Stretch()
+                    Finger_Stretch(sens)
                 if forearm_button.checkForInput(cursor_pos):
-                    Forearm_Stretch()
+                    Forearm_Stretch(sens)
 
                     
         

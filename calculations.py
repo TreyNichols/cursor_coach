@@ -12,6 +12,11 @@ def calculations(targets,data):
         print("ERROR!")
         return()
     for i in range(len(targets) - 1):
+        if (targets[i][0] - targets[i+1][0]) == 0:
+            m = (targets[i][1] - targets[i+1][1]) / .0000001
+            b = ((targets[i][0] * targets[i+1][1]) - targets[i+1][0] * targets[i][1]) / .0000001
+            optimum.append((m,b))
+            break
         m = (targets[i][1] - targets[i+1][1]) / (targets[i][0] - targets[i+1][0])
         b = ((targets[i][0] * targets[i+1][1]) - targets[i+1][0] * targets[i][1]) / (targets[i][0] - targets[i+1][0])
         optimum.append((m,b))

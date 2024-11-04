@@ -3,7 +3,7 @@ import json
 import constants
 from button import Button
 from cursor import My_Cursor
-import get_font
+from get_font import get_font
 def get_middle(surface):
     return constants.WIDTH / 2 - surface.get_width() / 2
 
@@ -109,15 +109,16 @@ def display_leaderboard(win, leaderboard, sens):
             y_position += 60
 
         # Draw the "Back" button
-        back_button.changeColor(pygame.mouse.get_pos())
+        back_button.changeColor((c.rect.x, c.rect.y))
         back_button.update(win)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if back_button.checkForInput(pygame.mouse.get_pos()):
+                if back_button.checkForInput((c.rect.x, c.rect.y)):
                     active = False  # Exit the leaderboard when "Back" is clicked
+                    return
         c.draw()
         c.update()
         pygame.display.update()
