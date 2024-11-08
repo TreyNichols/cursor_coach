@@ -35,7 +35,7 @@ def main_menu():
         QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
                             text_input="QUIT", font=get_font(60), base_color="#d7fcd4", hovering_color="White")
 
-        constants.SCREEN.blit(MENU_TEXT, MENU_RECT)
+        constants.SCREEN.blit(MENU_TEXT, MENU_RECT) 
 
         for button in [PLAY_BUTTON, STRETCHES_BUTTON, QUIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)

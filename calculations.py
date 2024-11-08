@@ -54,12 +54,12 @@ def calculations(targets,data):
     except:
         total_deviance = 0
     
-    if total_deviance > 30:
-        return f"Too much wrist. avg deviance = {str(round(total_deviance,2))}"
+    if total_deviance > 100:
+        return f"Slow down! Your avg deviance was {str(round(total_deviance,2))}"
     elif total_deviance > 50:
         return f"Oh no! Your avg deviance was {str(round(total_deviance,2))}!"
-    elif total_deviance > 100:
-        return f"Slow down! Your avg deviance was {str(round(total_deviance,2))}"
+    elif total_deviance > 30:
+        return f"Too much wrist. avg deviance = {str(round(total_deviance,2))}"
     else:
         return f"Nice! Your avg deviance was only {str(round(total_deviance,2))}!"
     

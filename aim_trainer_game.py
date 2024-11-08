@@ -43,7 +43,7 @@ def run(sens):
         elapsed_time = time.time() - start_time
                
 
-        if elapsed_time >= 10.0:
+        if elapsed_time >= 30.0:
                 end_screen(constants.WIN, elapsed_time, targets_pressed, clicks, clicked, functions,sens,misses)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
