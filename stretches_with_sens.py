@@ -5,6 +5,7 @@ from get_font import get_font
 from button import Button
 from constants import *
 from blit_text import blit_text
+
 def stretches_main(sens):
     c = My_Cursor(sens)
     
