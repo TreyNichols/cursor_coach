@@ -2,7 +2,7 @@ import mouse, pygame, sys
 from cursor import My_Cursor
 from constants import *
 from button import Button
-from main import get_font, main_menu
+from get_font import get_font
 from blit_text import *
 from aim_trainer_game import run as game
 
@@ -85,21 +85,23 @@ def mouse_options():
             
             if event.type == MOUSEBUTTONDOWN:
                 if back_button.checkForInput(cursor_pos):
-                    main_menu()
+                    return
                 if plus_button.checkForInput(cursor_pos):
                     value = round(value + 0.1, 1)
                 if minus_button.checkForInput(cursor_pos):
                     value = round(value - 0.1, 1)    
                 if test_button.checkForInput(cursor_pos):
                     c.sensitivity = value
+                    sens = value
                 if next_button.checkForInput(cursor_pos):
                     # Put next thing here
-                    game()
+                    game(sens)
         
         # Updates cursor and screen
         c.update()
         c.draw()            
         pygame.display.update()
+
 
 if __name__ == '__main__':        
     mouse_options()
